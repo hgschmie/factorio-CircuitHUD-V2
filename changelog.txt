@@ -3,6 +3,7 @@ Version: 2.5.1
 Date: 2025-06-23
   Bugfixes:
     - Don't crash when removing an entity with the GUI open.
+    - Don't erase the combinator name when pressing confirm twice.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.0
 Date: 2025-06-10

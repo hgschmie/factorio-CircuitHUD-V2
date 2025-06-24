@@ -105,6 +105,7 @@ function gui_combinator.create(player_index, unit_number)
                                     type = 'sprite-button',
                                     style = 'frame_action_button',
                                     sprite = 'utility/close',
+                                    tooltip = { 'gui.close-instruction' },
                                     handler = {
                                         [defines.events.on_gui_closed] = gui_handlers[const.GUI_ACTIONS.close],
                                         [defines.events.on_gui_click] = gui_handlers[const.GUI_ACTIONS.close],
@@ -179,6 +180,9 @@ function gui_combinator.create(player_index, unit_number)
                                             tags = {
                                                 unit_number = unit_number,
                                             },
+                                            elem_mods = {
+                                                tooltip = { 'gui.confirm' },
+                                            }
                                         }
                                     }
                                 },
@@ -314,6 +318,9 @@ function gui_combinator.create(player_index, unit_number)
                                             tags = {
                                                 unit_number = unit_number
                                             },
+                                            elem_mods = {
+                                                tooltip = { 'gui.confirm' },
+                                            }
                                         }
                                     }
                                 }
@@ -447,9 +454,6 @@ gui_handlers[const.GUI_ACTIONS.name_change_confirm] = function(params) -- button
     if title_ref then
         title_ref.caption = tmp_name
     end
-
-    -- Reset the temp name again
-    combinator.set_hud_combinator_temp_name(params.unit_number, '')
 
     -- Reset HUD all players on update
     event_handler.gui_hud_reset_all_players()
