@@ -94,6 +94,17 @@ local function register_events()
 		gui_hud.check_all_player_hud_visibility()
 	end
 
+	local function close_combinator_gui(entity)
+		if not (entity and entity.valid) then return end
+
+		for player_index in pairs(game.players) do
+			local gui = gui_combinator.get_combinator_gui(player_index)
+			if gui and gui.tags.unit_number == entity.unit_number then
+				gui_combinator.destroy(player_index, gui.name)
+			end
+		end
+	end
+
 	local entity_filter = function(event)
 		return event and event.entity.name == const.HUD_COMBINATOR_NAME and true or false
 	end
@@ -113,6 +124,7 @@ local function register_events()
 			defines.events.on_robot_mined_entity,
 			defines.events.on_space_platform_mined_entity,
 		}, function(event)
+			close_combinator_gui(event.entity)
 			set_combinator_registration(event.entity, false)
 		end,
 		entity_filter)

@@ -131,6 +131,7 @@ end
 ---@param signals_filter any
 function gui_hud.render_signals(hud_combinator, parent_gui, max_columns, signals_filter)
 	if not (parent_gui and parent_gui.valid) then return end
+	if not (hud_combinator.entity and hud_combinator.entity.valid) then return end
 
 	local unit_number = hud_combinator.unit_number
 	local should_filter = combinator.get_hud_combinator_filter_state(unit_number)

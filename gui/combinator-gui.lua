@@ -53,7 +53,7 @@ end
 function gui_combinator.create(player_index, unit_number)
     -- Check if it doesn't exist already
     local player = common.get_player(player_index)
-    local combinator_gui = gui_combinator.get_combinator_gui(player_index, unit_number)
+    local combinator_gui = gui_combinator.get_combinator_gui(player_index)
     if combinator_gui then
         common.debug_log(player_index, 'HUD Combinator GUI with unit_number ' .. tostring(unit_number) .. ' already has a GUI open/created.')
         -- We need to overwrite the "to be opened GUI" with our own GUI
@@ -361,7 +361,7 @@ function gui_combinator.update(player_index, unit_number)
     end
 end
 
-function gui_combinator.get_combinator_gui(player_index, unit_number)
+function gui_combinator.get_combinator_gui(player_index)
     local player = common.get_player(player_index)
     if player then
         local gui_windows = player.gui.screen.children
@@ -428,7 +428,7 @@ end
 
 gui_handlers[const.GUI_ACTIONS.close] = function(params) -- close button
     combinator.set_hud_combinator_temp_name(params.unit_number, '')
-    local combinator_gui_ref = gui_combinator.get_combinator_gui(params.player_index, params.unit_number)
+    local combinator_gui_ref = gui_combinator.get_combinator_gui(params.player_index)
     if combinator_gui_ref then
         combinator_gui_ref.destroy()
     end
